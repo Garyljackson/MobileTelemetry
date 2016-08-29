@@ -26,13 +26,13 @@ namespace MobileTelemetry
             OnPositionUpdated(new PositionUpdatedEventArgs(position));
         }
 
-        public async Task<bool> StartLocationUpdates(TimeSpan minTime, double minDistanceMeters, bool includeHeading)
+        public async Task<bool> StartLocationUpdatesAsync(TimeSpan minTime, double minDistanceMeters, bool includeHeading)
         {
             Geolocator.PositionChanged += GeolocatorOnPositionChanged;
             return await Geolocator.StartListeningAsync(minTime.Milliseconds, minDistanceMeters, includeHeading);
         }
 
-        public async Task<bool> StopLocationUpdates()
+        public async Task<bool> StopLocationUpdatesAsync()
         {
             Geolocator.PositionChanged -= GeolocatorOnPositionChanged;
             return await Geolocator.StopListeningAsync();
@@ -40,7 +40,7 @@ namespace MobileTelemetry
         
         public bool IsListening => Geolocator.IsListening;
 
-        protected virtual void OnPositionUpdated(PositionUpdatedEventArgs e)
+        private void OnPositionUpdated(PositionUpdatedEventArgs e)
         {
             PositionUpdated?.Invoke(this, e);
         }

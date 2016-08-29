@@ -32,11 +32,11 @@ namespace MobileTelemetry.iOS
         {
             if (switchEnable.On)
             {
-                await _positionManager.StartLocationUpdates(TimeSpan.FromSeconds(3), 5, true);
+                await _positionManager.StartLocationUpdatesAsync(TimeSpan.FromSeconds(3), 5, true);
             }
             else if (_positionManager.IsListening)
             {
-                await _positionManager.StopLocationUpdates();
+                await _positionManager.StopLocationUpdatesAsync();
             }
         }
 
