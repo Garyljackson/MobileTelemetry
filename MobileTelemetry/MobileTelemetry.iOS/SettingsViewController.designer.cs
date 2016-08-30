@@ -1,4 +1,4 @@
-﻿// WARNING
+// WARNING
 //
 // This file has been generated automatically by Xamarin Studio from the outlets and
 // actions declared in your storyboard file.
@@ -11,36 +11,18 @@ using UIKit;
 
 namespace MobileTelemetry.iOS
 {
-    [Register ("ViewController")]
-    partial class ViewController
+    [Register ("SettingsViewController")]
+    partial class SettingsViewController
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UISwitch switchEnable { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UITextField txtLatitude { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UITextField txtLongitude { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
             if (switchEnable != null) {
                 switchEnable.Dispose ();
                 switchEnable = null;
-            }
-
-            if (txtLatitude != null) {
-                txtLatitude.Dispose ();
-                txtLatitude = null;
-            }
-
-            if (txtLongitude != null) {
-                txtLongitude.Dispose ();
-                txtLongitude = null;
             }
         }
     }

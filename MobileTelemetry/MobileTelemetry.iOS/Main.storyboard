@@ -41,7 +41,7 @@
         </scene>
         <scene sceneID="44">
             <objects>
-                <viewController id="39" sceneMemberID="viewController" customClass="ConfigurationViewController">
+                <viewController id="39" sceneMemberID="viewController" customClass="SettingsViewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="32"/>
                         <viewControllerLayoutGuide type="bottom" id="33"/>

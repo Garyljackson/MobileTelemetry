@@ -1,5 +1,6 @@
 ﻿using Foundation;
 using MobileTelemetry.Abstractions;
+using MobileTelemetry.Services;
 using Plugin.Geolocator;
 using Plugin.Geolocator.Abstractions;
 using UIKit;
@@ -13,6 +14,7 @@ namespace MobileTelemetry.iOS
 	{
 		// class-level declarations
 	    private static IPositionManager _positionManager;
+	    private static TripPositionPublisherSource _tripPositionPublisherSource;
 
         public override UIWindow Window {
 			get;
@@ -24,6 +26,8 @@ namespace MobileTelemetry.iOS
             // Override point for customization after application launch.
             // If not required for your application you can safely delete this method
 		    _positionManager = SingletonPositionManager.Instance;
+		    _tripPositionPublisherSource = new TripPositionPublisherSource(_positionManager, new ConsoleTripPositionPublisher());
+
             return true;
 		}
 

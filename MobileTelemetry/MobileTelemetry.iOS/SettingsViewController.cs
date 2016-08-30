@@ -1,15 +1,14 @@
-using Foundation;
 using System;
 using MobileTelemetry.Abstractions;
 using UIKit;
 
 namespace MobileTelemetry.iOS
 {
-    public partial class ConfigurationViewController : UIViewController
+    public partial class SettingsViewController : UIViewController
     {
         private readonly IPositionManager _positionManager;
 
-        public ConfigurationViewController (IntPtr handle) : base (handle)
+        public SettingsViewController (IntPtr handle) : base (handle)
         {
             _positionManager = SingletonPositionManager.Instance;
         }
