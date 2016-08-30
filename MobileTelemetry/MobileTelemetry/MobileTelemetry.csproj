@@ -31,7 +31,7 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Services\ConsoleTripPositionPublisher.cs" />
+    <Compile Include="Services\DebugTripPositionPublisher.cs" />
     <Compile Include="Services\Hub.cs" />
     <Compile Include="Services\HubFactory.cs" />
     <Compile Include="Abstractions\IHub.cs" />

@@ -26,7 +26,7 @@ namespace MobileTelemetry.iOS
             // Override point for customization after application launch.
             // If not required for your application you can safely delete this method
 		    _positionManager = SingletonPositionManager.Instance;
-		    _tripPositionPublisherSource = new TripPositionPublisherSource(_positionManager, new ConsoleTripPositionPublisher());
+		    _tripPositionPublisherSource = new TripPositionPublisherSource(_positionManager, new DebugTripPositionPublisher());
 
             return true;
 		}

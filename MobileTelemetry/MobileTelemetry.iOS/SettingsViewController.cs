@@ -22,7 +22,7 @@ namespace MobileTelemetry.iOS
         private async void SwitchEnable_TouchUpInside(object sender, EventArgs e)
         {
             if (switchEnable.On)
-                await _positionManager.StartLocationUpdatesAsync(TimeSpan.FromSeconds(3), 5, true);
+                await _positionManager.StartLocationUpdatesAsync(TimeSpan.FromSeconds(3), 5, false);
             else if (_positionManager.IsListening)
                 await _positionManager.StopLocationUpdatesAsync();
         }
