@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Globalization;
+using MobileTelemetry.Models;
+using MobileTelemetry.Services;
+using Plugin.Geolocator;
 using UIKit;
 
 namespace MobileTelemetry.iOS
@@ -10,11 +13,16 @@ namespace MobileTelemetry.iOS
 
         public ViewController(IntPtr handle) : base(handle)
         {
-            _positionManager = PositionManager.Instance;
-            _positionManager.PositionUpdated += _positionManager_PositionUpdated;
+            _positionManager = new PositionManager(CrossGeolocator.Current);
+            ConfigureEvent();
         }
 
-        private void _positionManager_PositionUpdated(object sender, PositionUpdatedEventArgs e)
+        private void ConfigureEvent()
+        {
+            _positionManager.PositionUpdated += PositionManagerPositionUpdated;
+        }
+
+        private void PositionManagerPositionUpdated(object sender, PositionUpdatedEventArgs e)
         {
             txtLatitude.Text = e.Position.Latitude.ToString(CultureInfo.InvariantCulture);
             txtLongitude.Text = e.Position.Longitude.ToString(CultureInfo.InvariantCulture);
@@ -23,21 +31,15 @@ namespace MobileTelemetry.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-
-
             switchEnable.TouchUpInside += SwitchEnable_TouchUpInside;
         }
 
         private async void SwitchEnable_TouchUpInside(object sender, EventArgs e)
         {
             if (switchEnable.On)
-            {
                 await _positionManager.StartLocationUpdatesAsync(TimeSpan.FromSeconds(3), 5, true);
-            }
             else if (_positionManager.IsListening)
-            {
                 await _positionManager.StopLocationUpdatesAsync();
-            }
         }
 
         public override void DidReceiveMemoryWarning()

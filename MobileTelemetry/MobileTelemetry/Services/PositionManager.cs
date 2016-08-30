@@ -1,24 +1,21 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Plugin.Geolocator;
+using MobileTelemetry.Abstractions;
+using MobileTelemetry.Models;
 using Plugin.Geolocator.Abstractions;
 
-namespace MobileTelemetry
+namespace MobileTelemetry.Services
 {
-    public class PositionManager
+    public class PositionManager : IPositionManager
     {
-        private static readonly IGeolocator Geolocator;
+        private readonly IGeolocator _geolocator;
         public event EventHandler<PositionUpdatedEventArgs> PositionUpdated;
-        public static PositionManager Instance { get; } = new PositionManager();
 
-        static PositionManager()
+        public PositionManager(IGeolocator geolocator)
         {
-            Geolocator = CrossGeolocator.Current;
-            Geolocator.AllowsBackgroundUpdates = true;
+            _geolocator = geolocator;
+            _geolocator.AllowsBackgroundUpdates = true;
         }
-
-        private PositionManager()
-        { }
 
         private void GeolocatorOnPositionChanged(object sender, PositionEventArgs e)
         {
@@ -28,17 +25,17 @@ namespace MobileTelemetry
 
         public async Task<bool> StartLocationUpdatesAsync(TimeSpan minTime, double minDistanceMeters, bool includeHeading)
         {
-            Geolocator.PositionChanged += GeolocatorOnPositionChanged;
-            return await Geolocator.StartListeningAsync(minTime.Milliseconds, minDistanceMeters, includeHeading);
+            _geolocator.PositionChanged += GeolocatorOnPositionChanged;
+            return await _geolocator.StartListeningAsync(minTime.Milliseconds, minDistanceMeters, includeHeading);
         }
 
         public async Task<bool> StopLocationUpdatesAsync()
         {
-            Geolocator.PositionChanged -= GeolocatorOnPositionChanged;
-            return await Geolocator.StopListeningAsync();
+            _geolocator.PositionChanged -= GeolocatorOnPositionChanged;
+            return await _geolocator.StopListeningAsync();
         }
         
-        public bool IsListening => Geolocator.IsListening;
+        public bool IsListening => _geolocator.IsListening;
 
         private void OnPositionUpdated(PositionUpdatedEventArgs e)
         {

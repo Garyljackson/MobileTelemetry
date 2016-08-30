@@ -1,7 +1,6 @@
-﻿using System;
-using MobileTelemetry.Models;
+using System;
 
-namespace MobileTelemetry
+namespace MobileTelemetry.Models
 {
     public class PositionUpdatedEventArgs : EventArgs
     {
