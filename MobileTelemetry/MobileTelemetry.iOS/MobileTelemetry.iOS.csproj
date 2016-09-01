@@ -175,6 +175,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RealtimeViewController.cs" />
+    <Compile Include="RealtimeViewController.designer.cs">
+      <DependentUpon>RealtimeViewController.cs</DependentUpon>
+    </Compile>
     <Compile Include="SettingsViewController.cs" />
     <Compile Include="SettingsViewController.designer.cs">
       <DependentUpon>SettingsViewController.cs</DependentUpon>

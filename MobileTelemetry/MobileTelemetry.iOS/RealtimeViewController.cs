@@ -1,3 +1,4 @@
+using Foundation;
 using System;
 using System.Globalization;
 using MobileTelemetry.Abstractions;
@@ -5,11 +6,11 @@ using UIKit;
 
 namespace MobileTelemetry.iOS
 {
-    public partial class DetailsViewController : UIViewController
+    public partial class RealtimeViewController : UIViewController
     {
         private readonly IPositionManager _positionManager;
 
-        public DetailsViewController (IntPtr handle) : base (handle)
+        public RealtimeViewController (IntPtr handle) : base (handle)
         {
             _positionManager = SingletonPositionManager.Instance;
         }
@@ -17,7 +18,7 @@ namespace MobileTelemetry.iOS
         private void PositionManagerOnPositionUpdated(object sender, Models.PositionUpdatedEventArgs e)
         {
             var position = e.Position;
-            txtTimestamp.Text = position.Timestamp.ToString(CultureInfo.InvariantCulture);
+            txtTimestamp.Text = position.Timestamp.ToLocalTime().ToString("s");
             txtLatitude.Text = position.Latitude.ToString(CultureInfo.InvariantCulture);
             txtLongitude.Text = position.Longitude.ToString(CultureInfo.InvariantCulture);
             txtAltitude.Text = position.Altitude.ToString(CultureInfo.InvariantCulture);

@@ -11,8 +11,8 @@ using UIKit;
 
 namespace MobileTelemetry.iOS
 {
-    [Register ("DetailsViewController")]
-    partial class DetailsViewController
+    [Register ("RealtimeViewController")]
+    partial class RealtimeViewController
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]

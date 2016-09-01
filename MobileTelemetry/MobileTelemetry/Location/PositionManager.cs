@@ -14,6 +14,7 @@ namespace MobileTelemetry.Location
         public PositionManager(IGeolocator geolocator)
         {
             _geolocator = geolocator;
+            _geolocator.DesiredAccuracy = 10;
             _geolocator.AllowsBackgroundUpdates = true;
         }
 
