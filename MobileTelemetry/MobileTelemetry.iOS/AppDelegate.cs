@@ -1,6 +1,7 @@
 ﻿using Foundation;
 using MobileTelemetry.Abstractions;
-using MobileTelemetry.Services;
+using MobileTelemetry.Iot;
+using MobileTelemetry.Publishers;
 using Plugin.Geolocator;
 using Plugin.Geolocator.Abstractions;
 using UIKit;

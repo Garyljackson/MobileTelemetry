@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using MobileTelemetry.Abstractions;
 using MobileTelemetry.Models;
 using Plugin.Geolocator.Abstractions;
 
-namespace MobileTelemetry.Services
+namespace MobileTelemetry.Location
 {
     public class PositionManager : IPositionManager
     {

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using MobileTelemetry.Abstractions;
+using MobileTelemetry.Location;
 using MobileTelemetry.Models;
-using MobileTelemetry.Services;
 using Plugin.Geolocator;
 
 namespace MobileTelemetry

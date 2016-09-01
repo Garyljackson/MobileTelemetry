@@ -2,7 +2,7 @@
 using MobileTelemetry.Abstractions;
 using MobileTelemetry.Models;
 
-namespace MobileTelemetry.Services
+namespace MobileTelemetry.Iot
 {
     public class TripPositionPublisherSource
     {

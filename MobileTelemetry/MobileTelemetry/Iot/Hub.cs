@@ -4,7 +4,7 @@ using Microsoft.Azure.Devices.Client;
 using MobileTelemetry.Abstractions;
 using Newtonsoft.Json;
 
-namespace MobileTelemetry.Services
+namespace MobileTelemetry.Iot
 {
     public class Hub : IHub
     {

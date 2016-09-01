@@ -2,7 +2,7 @@
 using MobileTelemetry.Abstractions;
 using MobileTelemetry.Models;
 
-namespace MobileTelemetry.Services
+namespace MobileTelemetry.Publishers
 {
     public class DebugTripPositionPublisher : ITripPositionPublisher
     {

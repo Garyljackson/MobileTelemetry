@@ -1,7 +1,7 @@
 ﻿using Microsoft.Azure.Devices.Client;
 using MobileTelemetry.Abstractions;
 
-namespace MobileTelemetry.Services
+namespace MobileTelemetry.Iot
 {
     public class HubFactory : IHubFactory
     {

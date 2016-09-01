@@ -8,7 +8,7 @@ namespace MobileTelemetry.iOS
     {
         private readonly IPositionManager _positionManager;
 
-        public SettingsViewController (IntPtr handle) : base (handle)
+        public SettingsViewController(IntPtr handle) : base(handle)
         {
             _positionManager = SingletonPositionManager.Instance;
         }
@@ -16,15 +16,19 @@ namespace MobileTelemetry.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            switchEnable.TouchUpInside += SwitchEnable_TouchUpInside;
+            segOnOff.ValueChanged += SegOnOff_ValueChanged;
         }
 
-        private async void SwitchEnable_TouchUpInside(object sender, EventArgs e)
+        private async void SegOnOff_ValueChanged(object sender, EventArgs e)
         {
-            if (switchEnable.On)
-                await _positionManager.StartLocationUpdatesAsync(TimeSpan.FromSeconds(3), 5, false);
-            else if (_positionManager.IsListening)
+            if (segOnOff.SelectedSegment == 0)
+            {
                 await _positionManager.StopLocationUpdatesAsync();
+            }
+            else if (segOnOff.SelectedSegment == 1)
+            {
+                await _positionManager.StartLocationUpdatesAsync(TimeSpan.FromSeconds(3), 5, false);
+            }
         }
     }
 }
