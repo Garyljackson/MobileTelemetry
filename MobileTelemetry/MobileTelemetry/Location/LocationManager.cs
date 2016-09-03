@@ -15,6 +15,7 @@ namespace MobileTelemetry.Location
             _geolocator = geolocator;
             _geolocator.DesiredAccuracy = 10;
             _geolocator.AllowsBackgroundUpdates = true;
+            _geolocator.PausesLocationUpdatesAutomatically = false;
         }
 
         private void GeolocatorOnPositionChanged(object sender, PositionEventArgs e)

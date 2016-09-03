@@ -36,9 +36,6 @@
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>XSAppIconAssets</key>
 	<string>Resources/Images.xcassets/AppIcons.appiconset</string>
@@ -49,7 +46,6 @@
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>
-		<string>fetch</string>
 	</array>
 </dict>
 </plist>
