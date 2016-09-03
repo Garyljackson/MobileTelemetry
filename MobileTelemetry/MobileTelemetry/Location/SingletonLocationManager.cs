@@ -1,5 +1,4 @@
-﻿using MobileTelemetry.Abstractions;
-using Plugin.Geolocator;
+﻿using Plugin.Geolocator;
 
 namespace MobileTelemetry.Location
 {

@@ -1,5 +1,4 @@
 using System;
-using MobileTelemetry.Abstractions;
 using MobileTelemetry.EventRouter;
 using MobileTelemetry.EventSenders;
 using MobileTelemetry.Location;

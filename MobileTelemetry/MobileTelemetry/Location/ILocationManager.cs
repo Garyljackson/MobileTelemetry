@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using MobileTelemetry.Models;
 
-namespace MobileTelemetry.Abstractions
+namespace MobileTelemetry.Location
 {
     public interface ILocationManager
     {

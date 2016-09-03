@@ -1,6 +1,6 @@
-﻿using System;
-using MobileTelemetry.Abstractions;
+using System;
 using MobileTelemetry.EventSenders;
+using MobileTelemetry.Location;
 using MobileTelemetry.Models;
 
 namespace MobileTelemetry.EventRouter

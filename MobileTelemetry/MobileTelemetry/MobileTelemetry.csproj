@@ -36,10 +36,7 @@
     <Compile Include="EventRouter\LocationEventRouter.cs" />
     <Compile Include="EventRouter\LocationEventRouterSingleton.cs" />
     <Compile Include="EventSenders\DebugEventSender.cs" />
-    <Compile Include="Abstractions\IHub.cs" />
-    <Compile Include="Abstractions\IHubFactory.cs" />
-    <Compile Include="Abstractions\ILocationManager.cs" />
-    <Compile Include="Abstractions\ITripPositionPublisher.cs" />
+    <Compile Include="Location\ILocationManager.cs" />
     <Compile Include="Location\LocationManager.cs" />
     <Compile Include="Models\Transformer.cs" />
     <Compile Include="Models\LocationUpdatedEventArgs.cs" />
