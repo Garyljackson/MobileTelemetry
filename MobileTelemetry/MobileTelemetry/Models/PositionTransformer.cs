@@ -1,6 +1,4 @@
-﻿using MobileTelemetry.Models;
-
-namespace MobileTelemetry
+﻿namespace MobileTelemetry.Models
 {
     public static class PositionTransformer
     {
@@ -15,7 +13,7 @@ namespace MobileTelemetry
                 Latitude = position.Latitude,
                 Longitude = position.Longitude,
                 Speed = position.Speed,
-                Timestamp = position.Timestamp
+                Timestamp = position.Timestamp.ToLocalTime()
             };
 
             return result;

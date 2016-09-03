@@ -4,7 +4,7 @@ using MobileTelemetry.Models;
 
 namespace MobileTelemetry.Abstractions
 {
-    public interface IPositionManager
+    public interface ILocationManager
     {
         event EventHandler<PositionUpdatedEventArgs> PositionUpdated;
         bool IsListening { get; }

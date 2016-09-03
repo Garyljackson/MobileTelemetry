@@ -1,19 +1,19 @@
 using System;
 using MobileTelemetry.Abstractions;
-using MobileTelemetry.Iot;
+using MobileTelemetry.EventPublishers;
+using MobileTelemetry.EventSenders;
 using MobileTelemetry.Location;
-using MobileTelemetry.Publishers;
 using UIKit;
 
 namespace MobileTelemetry.iOS
 {
     public partial class SettingsViewController : UIViewController
     {
-        private readonly IPositionManager _positionManager;
+        private readonly ILocationManager _locationManager;
 
         public SettingsViewController(IntPtr handle) : base(handle)
         {
-            _positionManager = SingletonPositionManager.Instance;
+            _locationManager = SingletonLocationManager.Instance;
         }
 
         public override void ViewDidLoad()
@@ -26,23 +26,20 @@ namespace MobileTelemetry.iOS
         {
             if (segOnOff.SelectedSegment == 0)
             {
-                await _positionManager.StopLocationUpdatesAsync();
+                await _locationManager.StopLocationUpdatesAsync();
             }
             else if (segOnOff.SelectedSegment == 1)
             {
                 SetHubConfiguration();
-                await _positionManager.StartLocationUpdatesAsync(TimeSpan.FromSeconds(3), 5, false);
+                await _locationManager.StartLocationUpdatesAsync(TimeSpan.FromSeconds(5), 10, false);
             }
         }
 
         private void SetHubConfiguration()
         {
             var connectionString = $"HostName={txtHubName.Text}.azure-devices.net;DeviceId={txtDeviceId.Text};SharedAccessKey={txtAccessKey.Text}";
-            var hubFactory = new IotHubFactory(connectionString);
-
-            var iotHubTripPositionPublisher = new IotHubTripPositionPublisher(hubFactory);
-            SingletonTripPositionPublisherSource.Intance.TripPositionPublisher = iotHubTripPositionPublisher;
-
+            var eventSender = new AzureIotEventSender(connectionString);
+            PositionEventPublisherSingleton.Instance.SetEventSender(eventSender);
         }
     }
 }

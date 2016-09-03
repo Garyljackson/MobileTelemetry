@@ -1,10 +1,5 @@
 ﻿using Foundation;
-using MobileTelemetry.Abstractions;
-using MobileTelemetry.Iot;
-using MobileTelemetry.Location;
-using MobileTelemetry.Publishers;
-using Plugin.Geolocator;
-using Plugin.Geolocator.Abstractions;
+using MobileTelemetry.EventPublishers;
 using UIKit;
 
 namespace MobileTelemetry.iOS
@@ -15,7 +10,7 @@ namespace MobileTelemetry.iOS
 	public class AppDelegate : UIApplicationDelegate
 	{
 		// class-level declarations
-	    private static TripPositionPublisherSource _tripPositionPublisherSource;
+	    private static PositionEventPublisher _positionEventPublisher;
 
         public override UIWindow Window {
 			get;
@@ -26,8 +21,8 @@ namespace MobileTelemetry.iOS
 		{
             // Override point for customization after application launch.
             // If not required for your application you can safely delete this method
-		    _tripPositionPublisherSource = SingletonTripPositionPublisherSource.Intance;
 
+		    _positionEventPublisher = PositionEventPublisherSingleton.Instance;
             return true;
 		}
 

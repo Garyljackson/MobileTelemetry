@@ -1,25 +1,22 @@
 ﻿using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Azure.Devices.Client;
-using MobileTelemetry.Abstractions;
+using MobileTelemetry.Models;
 using Newtonsoft.Json;
 
-namespace MobileTelemetry.Iot
+namespace MobileTelemetry.EventSenders
 {
-    public class IotHub : IHub
+    public class AzureIotEventSender : IEventSender<TripPosition>
     {
         private readonly DeviceClient _deviceClient;
 
-        public IotHub(DeviceClient deviceClient)
+        public AzureIotEventSender(string connectionString)
         {
-            _deviceClient = deviceClient;
+            _deviceClient = DeviceClient.CreateFromConnectionString(connectionString);
         }
 
-        public async Task SendEvent<T>(T data)
+        public async Task SendEvent(TripPosition data)
         {
-            if (_deviceClient == null)
-                return;
-
             var dataString = JsonConvert.SerializeObject(data);
             var message = new Message(Encoding.UTF8.GetBytes(dataString));
             await _deviceClient.SendEventAsync(message);

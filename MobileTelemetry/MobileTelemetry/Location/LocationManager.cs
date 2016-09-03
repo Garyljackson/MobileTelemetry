@@ -6,12 +6,12 @@ using Plugin.Geolocator.Abstractions;
 
 namespace MobileTelemetry.Location
 {
-    public class PositionManager : IPositionManager
+    public class LocationManager : ILocationManager
     {
         private readonly IGeolocator _geolocator;
         public event EventHandler<PositionUpdatedEventArgs> PositionUpdated;
 
-        public PositionManager(IGeolocator geolocator)
+        public LocationManager(IGeolocator geolocator)
         {
             _geolocator = geolocator;
             _geolocator.DesiredAccuracy = 10;

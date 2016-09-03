@@ -9,14 +9,14 @@ namespace MobileTelemetry.iOS
 {
     public partial class RealtimeViewController : UIViewController
     {
-        private readonly IPositionManager _positionManager;
+        private readonly ILocationManager _locationManager;
 
         public RealtimeViewController (IntPtr handle) : base (handle)
         {
-            _positionManager = SingletonPositionManager.Instance;
+            _locationManager = SingletonLocationManager.Instance;
         }
 
-        private void PositionManagerOnPositionUpdated(object sender, Models.PositionUpdatedEventArgs e)
+        private void LocationManagerOnLocationUpdated(object sender, Models.PositionUpdatedEventArgs e)
         {
             var position = e.Position;
             txtTimestamp.Text = position.Timestamp.ToLocalTime().ToString("s");
@@ -32,12 +32,12 @@ namespace MobileTelemetry.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            _positionManager.PositionUpdated += PositionManagerOnPositionUpdated;
+            _locationManager.PositionUpdated += LocationManagerOnLocationUpdated;
         }
 
         public override void ViewDidUnload()
         {
-            _positionManager.PositionUpdated -= PositionManagerOnPositionUpdated;
+            _locationManager.PositionUpdated -= LocationManagerOnLocationUpdated;
         }
     }
 }
