@@ -1,6 +1,7 @@
 using System;
 using System.Globalization;
 using MobileTelemetry.Abstractions;
+using MobileTelemetry.Location;
 using UIKit;
 
 namespace MobileTelemetry.iOS

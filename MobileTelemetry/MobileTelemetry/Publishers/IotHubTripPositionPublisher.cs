@@ -6,15 +6,21 @@ namespace MobileTelemetry.Publishers
 {
     public class IotHubTripPositionPublisher : ITripPositionPublisher
     {
-        private readonly IHub _hub;
+        private readonly IHubFactory _hubFactory;
+        private IHub _hub;
 
-        public IotHubTripPositionPublisher(IHub hub)
+        public IotHubTripPositionPublisher(IHubFactory hubFactory)
         {
-            _hub = hub;
+            _hubFactory = hubFactory;
         }
 
         public Task Publish(TripPosition tripPosition)
         {
+            if (_hub == null)
+            {
+                _hub = _hubFactory.Create();
+            }
+
             return _hub.SendEvent(tripPosition);
         }
     }

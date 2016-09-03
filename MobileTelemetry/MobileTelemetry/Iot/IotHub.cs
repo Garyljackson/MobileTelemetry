@@ -6,11 +6,11 @@ using Newtonsoft.Json;
 
 namespace MobileTelemetry.Iot
 {
-    public class Hub : IHub
+    public class IotHub : IHub
     {
         private readonly DeviceClient _deviceClient;
 
-        public Hub(DeviceClient deviceClient)
+        public IotHub(DeviceClient deviceClient)
         {
             _deviceClient = deviceClient;
         }

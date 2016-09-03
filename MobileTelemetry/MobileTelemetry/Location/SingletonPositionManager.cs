@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
 using MobileTelemetry.Abstractions;
-using MobileTelemetry.Location;
 using MobileTelemetry.Models;
 using Plugin.Geolocator;
 
-namespace MobileTelemetry
+namespace MobileTelemetry.Location
 {
     public class SingletonPositionManager : IPositionManager
     {
