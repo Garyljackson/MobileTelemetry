@@ -3,13 +3,13 @@ using MobileTelemetry.Abstractions;
 using MobileTelemetry.EventSenders;
 using MobileTelemetry.Models;
 
-namespace MobileTelemetry.EventPublishers
+namespace MobileTelemetry.EventRouter
 {
-    public class PositionEventPublisher
+    public class LocationEventRouter
     {
         private IEventSender<TripLocation> _eventSender;
 
-        public PositionEventPublisher(ILocationManager locationManager)
+        public LocationEventRouter(ILocationManager locationManager)
         {
             locationManager.LocationUpdated += PositionManagerOnPositionUpdated;
         }

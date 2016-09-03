@@ -33,8 +33,8 @@
   <ItemGroup>
     <Compile Include="EventSenders\AzureIotEventSender.cs" />
     <Compile Include="EventSenders\IEventSender.cs" />
-    <Compile Include="EventPublishers\PositionEventPublisher.cs" />
-    <Compile Include="EventPublishers\PositionEventPublisherSingleton.cs" />
+    <Compile Include="EventRouter\LocationEventRouter.cs" />
+    <Compile Include="EventRouter\LocationEventRouterSingleton.cs" />
     <Compile Include="EventSenders\DebugEventSender.cs" />
     <Compile Include="Abstractions\IHub.cs" />
     <Compile Include="Abstractions\IHubFactory.cs" />

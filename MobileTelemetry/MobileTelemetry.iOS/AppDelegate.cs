@@ -1,5 +1,5 @@
 ﻿using Foundation;
-using MobileTelemetry.EventPublishers;
+using MobileTelemetry.EventRouter;
 using UIKit;
 
 namespace MobileTelemetry.iOS
@@ -10,7 +10,7 @@ namespace MobileTelemetry.iOS
 	public class AppDelegate : UIApplicationDelegate
 	{
 		// class-level declarations
-	    private static PositionEventPublisher _positionEventPublisher;
+	    private static LocationEventRouter _locationEventRouter;
 
         public override UIWindow Window {
 			get;
@@ -22,7 +22,7 @@ namespace MobileTelemetry.iOS
             // Override point for customization after application launch.
             // If not required for your application you can safely delete this method
 
-		    _positionEventPublisher = PositionEventPublisherSingleton.Instance;
+		    _locationEventRouter = LocationEventRouterSingleton.Instance;
             return true;
 		}
 

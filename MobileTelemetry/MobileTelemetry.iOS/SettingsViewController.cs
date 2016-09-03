@@ -1,6 +1,6 @@
 using System;
 using MobileTelemetry.Abstractions;
-using MobileTelemetry.EventPublishers;
+using MobileTelemetry.EventRouter;
 using MobileTelemetry.EventSenders;
 using MobileTelemetry.Location;
 using UIKit;
@@ -39,7 +39,7 @@ namespace MobileTelemetry.iOS
         {
             var connectionString = $"HostName={txtHubName.Text}.azure-devices.net;DeviceId={txtDeviceId.Text};SharedAccessKey={txtAccessKey.Text}";
             var eventSender = new AzureIotEventSender(connectionString);
-            PositionEventPublisherSingleton.Instance.SetEventSender(eventSender);
+            LocationEventRouterSingleton.Instance.SetEventSender(eventSender);
         }
     }
 }
