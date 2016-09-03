@@ -17,6 +17,7 @@
                     <connections>
                         <segue destination="39" kind="relationship" relationship="viewControllers" id="38"/>
                         <segue destination="41" kind="relationship" relationship="viewControllers" id="40"/>
+                        <segue id="541" destination="447" kind="relationship" relationship="viewControllers"/>
                     </connections>
                     <navigationItem id="108" key="navigationItem" title="Mobile Telemetry"/>
                 </tabBarController>
@@ -344,6 +345,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="51" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="369" y="375"/>
+        </scene>
+        <scene sceneID="446">
+            <objects>
+                <viewController id="447" sceneMemberID="viewController" customClass="MapViewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="444"/>
+                        <viewControllerLayoutGuide type="bottom" id="445"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="448">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" id="540" title="Map"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="449" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="369" y="1085"/>
         </scene>
     </scenes>
 </document>

@@ -175,6 +175,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MapViewController.cs" />
+    <Compile Include="MapViewController.designer.cs">
+      <DependentUpon>MapViewController.cs</DependentUpon>
+    </Compile>
     <Compile Include="RealtimeViewController.cs" />
     <Compile Include="RealtimeViewController.designer.cs">
       <DependentUpon>RealtimeViewController.cs</DependentUpon>
