@@ -1,10 +1,10 @@
 ﻿namespace MobileTelemetry.Models
 {
-    public static class PositionTransformer
+    public static class Transformer
     {
-        public static Position Transform(this Plugin.Geolocator.Abstractions.Position position)
+        public static Location Transform(this Plugin.Geolocator.Abstractions.Position position)
         {
-            var result = new Position
+            var result = new Location
             {
                 Accuracy = position.Accuracy,
                 Altitude = position.Altitude,

@@ -2,7 +2,7 @@
 
 namespace MobileTelemetry.EventSenders
 {
-    public interface IEventSender<T>
+    public interface IEventSender<in T>
     {
         Task SendEvent(T data);
     }

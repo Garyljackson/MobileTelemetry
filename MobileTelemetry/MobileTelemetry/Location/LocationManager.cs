@@ -9,7 +9,7 @@ namespace MobileTelemetry.Location
     public class LocationManager : ILocationManager
     {
         private readonly IGeolocator _geolocator;
-        public event EventHandler<PositionUpdatedEventArgs> PositionUpdated;
+        public event EventHandler<LocationUpdatedEventArgs> LocationUpdated;
 
         public LocationManager(IGeolocator geolocator)
         {
@@ -21,7 +21,7 @@ namespace MobileTelemetry.Location
         private void GeolocatorOnPositionChanged(object sender, PositionEventArgs e)
         {
             var position = e.Position.Transform();
-            OnPositionUpdated(new PositionUpdatedEventArgs(position));
+            OnPositionUpdated(new LocationUpdatedEventArgs(position));
         }
 
         public async Task<bool> StartLocationUpdatesAsync(TimeSpan minTime, double minDistanceMeters, bool includeHeading)
@@ -38,9 +38,9 @@ namespace MobileTelemetry.Location
         
         public bool IsListening => _geolocator.IsListening;
 
-        private void OnPositionUpdated(PositionUpdatedEventArgs e)
+        private void OnPositionUpdated(LocationUpdatedEventArgs e)
         {
-            PositionUpdated?.Invoke(this, e);
+            LocationUpdated?.Invoke(this, e);
         }
     }
 }

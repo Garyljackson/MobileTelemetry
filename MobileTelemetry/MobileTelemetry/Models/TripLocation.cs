@@ -2,9 +2,9 @@
 
 namespace MobileTelemetry.Models
 {
-    public class TripPosition
+    public class TripLocation
     {
         public Guid Id { get; set; }
-        public Position Position { get; set; }
+        public Location Location { get; set; }
     }
 }

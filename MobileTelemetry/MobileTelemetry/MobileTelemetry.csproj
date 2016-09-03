@@ -41,10 +41,10 @@
     <Compile Include="Abstractions\ILocationManager.cs" />
     <Compile Include="Abstractions\ITripPositionPublisher.cs" />
     <Compile Include="Location\LocationManager.cs" />
-    <Compile Include="Models\PositionTransformer.cs" />
-    <Compile Include="Models\PositionUpdatedEventArgs.cs" />
-    <Compile Include="Models\Position.cs" />
-    <Compile Include="Models\TripPosition.cs" />
+    <Compile Include="Models\Transformer.cs" />
+    <Compile Include="Models\LocationUpdatedEventArgs.cs" />
+    <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\TripLocation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Location\SingletonLocationManager.cs" />
   </ItemGroup>

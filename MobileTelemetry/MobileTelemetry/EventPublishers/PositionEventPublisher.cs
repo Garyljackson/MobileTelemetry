@@ -7,27 +7,27 @@ namespace MobileTelemetry.EventPublishers
 {
     public class PositionEventPublisher
     {
-        private IEventSender<TripPosition> _eventSender;
+        private IEventSender<TripLocation> _eventSender;
 
         public PositionEventPublisher(ILocationManager locationManager)
         {
-            locationManager.PositionUpdated += PositionManagerOnPositionUpdated;
+            locationManager.LocationUpdated += PositionManagerOnPositionUpdated;
         }
 
-        public void SetEventSender(IEventSender<TripPosition> eventSender)
+        public void SetEventSender(IEventSender<TripLocation> eventSender)
         {
             _eventSender = eventSender;
         }
 
-        private async void PositionManagerOnPositionUpdated(object sender, PositionUpdatedEventArgs e)
+        private async void PositionManagerOnPositionUpdated(object sender, LocationUpdatedEventArgs e)
         {
             if (_eventSender == null)
                 return;
 
-            var tripPosition = new TripPosition
+            var tripPosition = new TripLocation
             {
                 Id = Guid.NewGuid(),
-                Position = e.Position
+                Location = e.Location
             };
 
             await _eventSender.SendEvent(tripPosition);

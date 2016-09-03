@@ -6,7 +6,7 @@ namespace MobileTelemetry.Abstractions
 {
     public interface ILocationManager
     {
-        event EventHandler<PositionUpdatedEventArgs> PositionUpdated;
+        event EventHandler<LocationUpdatedEventArgs> LocationUpdated;
         bool IsListening { get; }
         Task<bool> StartLocationUpdatesAsync(TimeSpan minTime, double minDistanceMeters, bool includeHeading);
         Task<bool> StopLocationUpdatesAsync();

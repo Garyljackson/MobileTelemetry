@@ -5,6 +5,6 @@ namespace MobileTelemetry.Abstractions
 {
     public interface ITripPositionPublisher
     {
-        Task Publish(TripPosition tripPosition);
+        Task Publish(TripLocation tripLocation);
     }
 }

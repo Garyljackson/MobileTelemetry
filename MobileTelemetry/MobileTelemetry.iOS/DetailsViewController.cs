@@ -15,9 +15,9 @@ namespace MobileTelemetry.iOS
             _locationManager = SingletonLocationManager.Instance;
         }
 
-        private void LocationManagerOnLocationUpdated(object sender, Models.PositionUpdatedEventArgs e)
+        private void LocationManagerOnLocationUpdated(object sender, Models.LocationUpdatedEventArgs e)
         {
-            var position = e.Position;
+            var position = e.Location;
             txtTimestamp.Text = position.Timestamp.ToString(CultureInfo.InvariantCulture);
             txtLatitude.Text = position.Latitude.ToString(CultureInfo.InvariantCulture);
             txtLongitude.Text = position.Longitude.ToString(CultureInfo.InvariantCulture);
@@ -31,12 +31,12 @@ namespace MobileTelemetry.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            _locationManager.PositionUpdated += LocationManagerOnLocationUpdated;
+            _locationManager.LocationUpdated += LocationManagerOnLocationUpdated;
         }
 
         public override void ViewDidUnload()
         {
-            _locationManager.PositionUpdated -= LocationManagerOnLocationUpdated;
+            _locationManager.LocationUpdated -= LocationManagerOnLocationUpdated;
         }
     }
 }

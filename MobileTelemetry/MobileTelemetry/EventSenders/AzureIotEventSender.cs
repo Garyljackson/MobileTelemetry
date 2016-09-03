@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace MobileTelemetry.EventSenders
 {
-    public class AzureIotEventSender : IEventSender<TripPosition>
+    public class AzureIotEventSender : IEventSender<TripLocation>
     {
         private readonly DeviceClient _deviceClient;
 
@@ -15,7 +15,7 @@ namespace MobileTelemetry.EventSenders
             _deviceClient = DeviceClient.CreateFromConnectionString(connectionString);
         }
 
-        public async Task SendEvent(TripPosition data)
+        public async Task SendEvent(TripLocation data)
         {
             var dataString = JsonConvert.SerializeObject(data);
             var message = new Message(Encoding.UTF8.GetBytes(dataString));

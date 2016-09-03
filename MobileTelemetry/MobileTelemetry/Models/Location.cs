@@ -2,7 +2,7 @@
 
 namespace MobileTelemetry.Models
 {
-    public class Position
+    public class Location
     {
         public DateTimeOffset Timestamp { get; set; }
 
