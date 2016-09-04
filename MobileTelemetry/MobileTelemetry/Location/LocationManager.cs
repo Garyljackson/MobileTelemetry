@@ -40,6 +40,11 @@ namespace MobileTelemetry.Location
 
         private void OnPositionUpdated(LocationUpdatedEventArgs e)
         {
+            var lastValue = Settings.LastUpdate;
+            var newEntry = e.Location.Timestamp.ToLocalTime().DateTime.ToString("T");
+
+            Settings.LastUpdate = $"{lastValue}, {newEntry}";
+
             LocationUpdated?.Invoke(this, e);
         }
     }

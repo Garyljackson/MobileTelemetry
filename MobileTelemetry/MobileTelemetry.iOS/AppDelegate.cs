@@ -1,5 +1,7 @@
 ﻿using Foundation;
 using MobileTelemetry.EventRouter;
+using Plugin.Geolocator;
+using Plugin.Geolocator.Abstractions;
 using UIKit;
 
 namespace MobileTelemetry.iOS
@@ -11,6 +13,7 @@ namespace MobileTelemetry.iOS
 	{
 		// class-level declarations
 	    private static LocationEventRouter _locationEventRouter;
+	    private static IGeolocator _geolocator;
 
         public override UIWindow Window {
 			get;
@@ -22,7 +25,8 @@ namespace MobileTelemetry.iOS
             // Override point for customization after application launch.
             // If not required for your application you can safely delete this method
 
-		    _locationEventRouter = LocationEventRouterSingleton.Instance;
+            _geolocator = CrossGeolocator.Current;
+            _locationEventRouter = LocationEventRouterSingleton.Instance;
             return true;
 		}
 

@@ -18,7 +18,28 @@ namespace MobileTelemetry.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+            LoadSettings();
             segOnOff.ValueChanged += SegOnOff_ValueChanged;
+        }
+
+        private void LoadSettings()
+        {
+            if (!string.IsNullOrWhiteSpace(txtHubName.Text))
+            {
+                return;
+            }
+
+            txtHubName.Text = Settings.HubName;
+            txtDeviceId.Text = Settings.DeviceId;
+            txtAccessKey.Text = Settings.SharedAccessKey;
+        }
+
+        private void SaveSettings()
+        {
+            Settings.HubName = txtHubName.Text;
+            Settings.DeviceId = txtDeviceId.Text;
+            Settings.SharedAccessKey = txtAccessKey.Text;
+
         }
 
         private async void SegOnOff_ValueChanged(object sender, EventArgs e)
@@ -29,6 +50,7 @@ namespace MobileTelemetry.iOS
             }
             else if (segOnOff.SelectedSegment == 1)
             {
+                SaveSettings();
                 SetHubConfiguration();
                 await _locationManager.StartLocationUpdatesAsync(TimeSpan.FromSeconds(5), 10, false);
             }
@@ -36,9 +58,14 @@ namespace MobileTelemetry.iOS
 
         private void SetHubConfiguration()
         {
-            var connectionString = $"HostName={txtHubName.Text}.azure-devices.net;DeviceId={txtDeviceId.Text};SharedAccessKey={txtAccessKey.Text}";
+            var hubName = txtHubName.Text;
+            var deviceId = txtDeviceId.Text;
+            var sharedAccessKey = txtAccessKey.Text;
+
+            var connectionString = $"HostName={hubName}.azure-devices.net;DeviceId={deviceId};SharedAccessKey={sharedAccessKey}";
             var eventSender = new AzureIotEventSender(connectionString);
             LocationEventRouterSingleton.Instance.SetEventSender(eventSender);
         }
+
     }
 }
