@@ -8,7 +8,7 @@ namespace MobileTelemetry.Location
 {
     public sealed class LocationManager : ILocationManager
     {
-        private static readonly Lazy<LocationManager> InternalInstance = new Lazy<LocationManager>(() => new LocationManager());
+        private static readonly Lazy<LocationManager> InternalInstance = new Lazy<LocationManager>(LocationManagerFactory);
         private static readonly IGeolocator Geolocator;
         public event EventHandler<LocationUpdatedEventArgs> LocationUpdated;
 
@@ -20,7 +20,7 @@ namespace MobileTelemetry.Location
             Geolocator.PausesLocationUpdatesAutomatically = false;
         }
 
-        public static LocationManager Instance => InternalInstance.Value;
+        public static LocationManager Instance { get; } = InternalInstance.Value;
 
         private void GeolocatorOnPositionChanged(object sender, PositionEventArgs e)
         {
@@ -45,6 +45,11 @@ namespace MobileTelemetry.Location
         private void OnPositionUpdated(LocationUpdatedEventArgs e)
         {
             LocationUpdated?.Invoke(this, e);
+        }
+
+        private static LocationManager LocationManagerFactory()
+        {
+            return new LocationManager();
         }
     }
 }

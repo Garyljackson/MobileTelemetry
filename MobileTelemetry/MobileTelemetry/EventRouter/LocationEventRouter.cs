@@ -10,7 +10,7 @@ namespace MobileTelemetry.EventRouter
         private static IEventSender<TripLocation> _eventSender;
         private static readonly ILocationManager LocationManager;
 
-        private static readonly Lazy<LocationEventRouter> InternalInstance = new Lazy<LocationEventRouter>(() => new LocationEventRouter());
+        private static readonly Lazy<LocationEventRouter> InternalInstance = new Lazy<LocationEventRouter>(LocationEventRouterFactory);
 
         static LocationEventRouter()
         {
@@ -18,7 +18,7 @@ namespace MobileTelemetry.EventRouter
             LocationManager.LocationUpdated += LocationManager_LocationUpdated;
         }
 
-        public static LocationEventRouter Instance => InternalInstance.Value;
+        public static LocationEventRouter Instance { get; } = InternalInstance.Value;
 
         private static async void LocationManager_LocationUpdated(object sender, LocationUpdatedEventArgs e)
         {
@@ -39,6 +39,10 @@ namespace MobileTelemetry.EventRouter
             _eventSender = eventSender;
         }
 
+        private static LocationEventRouter LocationEventRouterFactory()
+        {
+            return new LocationEventRouter();
+        }
 
     }
 }

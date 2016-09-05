@@ -1,4 +1,6 @@
-﻿using Foundation;
+﻿using System;
+using Foundation;
+using HockeyApp.iOS;
 using MobileTelemetry.EventRouter;
 using Plugin.Geolocator;
 using Plugin.Geolocator.Abstractions;
@@ -25,8 +27,25 @@ namespace MobileTelemetry.iOS
             // Override point for customization after application launch.
             // If not required for your application you can safely delete this method
 
+            var manager = BITHockeyManager.SharedHockeyManager;
+            manager.Configure("f31dbac6731d49a495156cfd1173a3fd");
+            manager.LogLevel = BITLogLevel.Debug;
+            manager.DebugLogEnabled = true;
+            manager.StartManager();
+
             _geolocator = CrossGeolocator.Current;
             _locationEventRouter = LocationEventRouter.Instance;
+
+            // Trying to force crashes to happen quickly
+            new System.Threading.Thread(() =>
+            {
+                while (true)
+                {
+                    System.Threading.Thread.Sleep(1000);
+                    GC.Collect();
+                }
+            }).Start();
+
             return true;
 		}
 
