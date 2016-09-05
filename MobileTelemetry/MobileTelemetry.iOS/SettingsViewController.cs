@@ -12,7 +12,7 @@ namespace MobileTelemetry.iOS
 
         public SettingsViewController(IntPtr handle) : base(handle)
         {
-            _locationManager = SingletonLocationManager.Instance;
+            _locationManager = LocationManager.Instance;
         }
 
         public override void ViewDidLoad()
@@ -64,7 +64,7 @@ namespace MobileTelemetry.iOS
 
             var connectionString = $"HostName={hubName}.azure-devices.net;DeviceId={deviceId};SharedAccessKey={sharedAccessKey}";
             var eventSender = new AzureIotEventSender(connectionString);
-            LocationEventRouterSingleton.Instance.SetEventSender(eventSender);
+            LocationEventRouter.Instance.SetEventSender(eventSender);
         }
 
     }

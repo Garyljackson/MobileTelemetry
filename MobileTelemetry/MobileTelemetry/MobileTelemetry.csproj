@@ -34,9 +34,7 @@
     <Compile Include="EventSenders\AzureIotEventSender.cs" />
     <Compile Include="EventSenders\IEventSender.cs" />
     <Compile Include="EventRouter\LocationEventRouter.cs" />
-    <Compile Include="EventRouter\LocationEventRouterSingleton.cs" />
     <Compile Include="EventSenders\DebugEventSender.cs" />
-    <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Location\ILocationManager.cs" />
     <Compile Include="Location\LocationManager.cs" />
     <Compile Include="Models\Transformer.cs" />
@@ -44,7 +42,6 @@
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\TripLocation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Location\SingletonLocationManager.cs" />
     <Compile Include="Settings.cs" />
   </ItemGroup>
   <ItemGroup>

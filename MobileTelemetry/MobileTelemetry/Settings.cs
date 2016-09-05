@@ -8,16 +8,6 @@ namespace MobileTelemetry
     {
         private static ISettings AppSettings => CrossSettings.Current;
 
-        private const string LastUpdateKey = "last_update_key";
-        private static readonly string LastUpdateDefault = string.Empty;
-
-        public static string LastUpdate
-        {
-            get { return AppSettings.GetValueOrDefault(LastUpdateKey, LastUpdateDefault); }
-            set { AppSettings.AddOrUpdateValue(LastUpdateKey, value); }
-        }
-
-
         private const string HubNameKey = "hub_name_key";
         private static readonly string HubNameDefault = string.Empty;
 

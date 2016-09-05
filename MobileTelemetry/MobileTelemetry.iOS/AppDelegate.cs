@@ -26,7 +26,7 @@ namespace MobileTelemetry.iOS
             // If not required for your application you can safely delete this method
 
             _geolocator = CrossGeolocator.Current;
-            _locationEventRouter = LocationEventRouterSingleton.Instance;
+            _locationEventRouter = LocationEventRouter.Instance;
             return true;
 		}
 

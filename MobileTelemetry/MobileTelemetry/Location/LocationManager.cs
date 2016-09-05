@@ -1,22 +1,26 @@
 using System;
 using System.Threading.Tasks;
 using MobileTelemetry.Models;
+using Plugin.Geolocator;
 using Plugin.Geolocator.Abstractions;
 
 namespace MobileTelemetry.Location
 {
-    public class LocationManager : ILocationManager
+    public sealed class LocationManager : ILocationManager
     {
-        private readonly IGeolocator _geolocator;
+        private static readonly Lazy<LocationManager> InternalInstance = new Lazy<LocationManager>(() => new LocationManager());
+        private static readonly IGeolocator Geolocator;
         public event EventHandler<LocationUpdatedEventArgs> LocationUpdated;
 
-        public LocationManager(IGeolocator geolocator)
+        static LocationManager()
         {
-            _geolocator = geolocator;
-            _geolocator.DesiredAccuracy = 10;
-            _geolocator.AllowsBackgroundUpdates = true;
-            _geolocator.PausesLocationUpdatesAutomatically = false;
+            Geolocator = CrossGeolocator.Current;
+            Geolocator.DesiredAccuracy = 10;
+            Geolocator.AllowsBackgroundUpdates = true;
+            Geolocator.PausesLocationUpdatesAutomatically = false;
         }
+
+        public static LocationManager Instance => InternalInstance.Value;
 
         private void GeolocatorOnPositionChanged(object sender, PositionEventArgs e)
         {
@@ -26,25 +30,20 @@ namespace MobileTelemetry.Location
 
         public async Task<bool> StartLocationUpdatesAsync(TimeSpan minTime, double minDistanceMeters, bool includeHeading)
         {
-            _geolocator.PositionChanged += GeolocatorOnPositionChanged;
-            return await _geolocator.StartListeningAsync(minTime.Milliseconds, minDistanceMeters, includeHeading);
+            Geolocator.PositionChanged += GeolocatorOnPositionChanged;
+            return await Geolocator.StartListeningAsync(minTime.Milliseconds, minDistanceMeters, includeHeading);
         }
 
         public async Task<bool> StopLocationUpdatesAsync()
         {
-            _geolocator.PositionChanged -= GeolocatorOnPositionChanged;
-            return await _geolocator.StopListeningAsync();
+            Geolocator.PositionChanged -= GeolocatorOnPositionChanged;
+            return await Geolocator.StopListeningAsync();
         }
         
-        public bool IsListening => _geolocator.IsListening;
+        public bool IsListening => Geolocator.IsListening;
 
         private void OnPositionUpdated(LocationUpdatedEventArgs e)
         {
-            var lastValue = Settings.LastUpdate;
-            var newEntry = e.Location.Timestamp.ToLocalTime().DateTime.ToString("T");
-
-            Settings.LastUpdate = $"{lastValue}, {newEntry}";
-
             LocationUpdated?.Invoke(this, e);
         }
     }

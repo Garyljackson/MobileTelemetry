@@ -7,19 +7,20 @@ namespace MobileTelemetry.EventRouter
 {
     public class LocationEventRouter
     {
-        private IEventSender<TripLocation> _eventSender;
+        private static IEventSender<TripLocation> _eventSender;
+        private static readonly ILocationManager LocationManager;
 
-        public LocationEventRouter(ILocationManager locationManager)
+        private static readonly Lazy<LocationEventRouter> InternalInstance = new Lazy<LocationEventRouter>(() => new LocationEventRouter());
+
+        static LocationEventRouter()
         {
-            locationManager.LocationUpdated += PositionManagerOnPositionUpdated;
+            LocationManager = Location.LocationManager.Instance;
+            LocationManager.LocationUpdated += LocationManager_LocationUpdated;
         }
 
-        public void SetEventSender(IEventSender<TripLocation> eventSender)
-        {
-            _eventSender = eventSender;
-        }
+        public static LocationEventRouter Instance => InternalInstance.Value;
 
-        private async void PositionManagerOnPositionUpdated(object sender, LocationUpdatedEventArgs e)
+        private static async void LocationManager_LocationUpdated(object sender, LocationUpdatedEventArgs e)
         {
             if (_eventSender == null)
                 return;
@@ -32,6 +33,12 @@ namespace MobileTelemetry.EventRouter
 
             await _eventSender.SendEvent(tripPosition);
         }
+
+        public void SetEventSender(IEventSender<TripLocation> eventSender)
+        {
+            _eventSender = eventSender;
+        }
+
 
     }
 }

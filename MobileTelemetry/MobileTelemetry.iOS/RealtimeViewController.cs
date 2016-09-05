@@ -12,7 +12,7 @@ namespace MobileTelemetry.iOS
 
         public RealtimeViewController (IntPtr handle) : base (handle)
         {
-            _locationManager = SingletonLocationManager.Instance;
+            _locationManager = LocationManager.Instance;
         }
 
         private void LocationManagerOnLocationUpdated(object sender, Models.LocationUpdatedEventArgs e)
