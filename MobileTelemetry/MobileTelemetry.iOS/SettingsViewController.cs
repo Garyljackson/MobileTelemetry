@@ -20,6 +20,12 @@ namespace MobileTelemetry.iOS
             base.ViewDidLoad();
             LoadSettings();
             segOnOff.ValueChanged += SegOnOff_ValueChanged;
+
+            var g = new UITapGestureRecognizer(() => View.EndEditing(true))
+            {
+                CancelsTouchesInView = false
+            };
+            View.AddGestureRecognizer(g);
         }
 
         private void LoadSettings()

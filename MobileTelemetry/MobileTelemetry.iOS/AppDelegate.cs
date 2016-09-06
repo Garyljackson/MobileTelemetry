@@ -15,7 +15,6 @@ namespace MobileTelemetry.iOS
 	{
 		// class-level declarations
 	    private static LocationEventRouter _locationEventRouter;
-	    private static IGeolocator _geolocator;
 
         public override UIWindow Window {
 			get;
@@ -33,18 +32,7 @@ namespace MobileTelemetry.iOS
             manager.DebugLogEnabled = true;
             manager.StartManager();
 
-            _geolocator = CrossGeolocator.Current;
             _locationEventRouter = LocationEventRouter.Instance;
-
-            // Trying to force crashes to happen quickly
-            new System.Threading.Thread(() =>
-            {
-                while (true)
-                {
-                    System.Threading.Thread.Sleep(1000);
-                    GC.Collect();
-                }
-            }).Start();
 
             return true;
 		}
