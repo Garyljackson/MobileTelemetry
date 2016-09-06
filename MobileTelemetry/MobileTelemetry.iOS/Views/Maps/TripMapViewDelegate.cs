@@ -8,6 +8,7 @@ namespace MobileTelemetry.iOS.Views.Maps
     {
         private const double Alpha = 0.6;
         private readonly UIColor _color = UIColor.Blue;
+        private bool _locationZoomed;
 
         public override MKOverlayRenderer OverlayRenderer(MKMapView mapView, IMKOverlay overlay)
         {
@@ -22,8 +23,9 @@ namespace MobileTelemetry.iOS.Views.Maps
 
         public override void DidUpdateUserLocation(MKMapView mapView, MKUserLocation userLocation)
         {
-            if (mapView.UserLocation != null)
+            if (mapView.UserLocation != null && !_locationZoomed)
             {
+                _locationZoomed = true;
                 var coords = mapView.UserLocation.Coordinate;
                 var span = new MKCoordinateSpan(KilometresToLatitudeDegrees(2), KilometresToLongitudeDegrees(2, coords.Latitude));
                 mapView.Region = new MKCoordinateRegion(coords, span);
