@@ -138,7 +138,7 @@
                             <constraint id="384" firstItem="236" firstAttribute="centerX" secondItem="45" secondAttribute="centerX"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" id="46" title="Config"/>
+                    <tabBarItem key="tabBarItem" id="46" title="Config" image="gear-50.png"/>
                     <connections>
                         <outlet property="txtHubName" destination="197" id="name-outlet-197"/>
                         <outlet property="txtDeviceId" destination="196" id="name-outlet-196"/>
@@ -323,7 +323,7 @@
                             <constraint id="436" firstItem="49" firstAttribute="trailing" secondItem="168" secondAttribute="trailing" constant="20"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Real Time" id="50"/>
+                    <tabBarItem key="tabBarItem" title="Real Time" id="50" image="HeartWithPulse-50.png"/>
                     <connections>
                         <outlet property="txtLatitude" destination="124" id="name-outlet-124"/>
                         <outlet property="txtTimestamp" destination="121" id="name-outlet-121"/>
@@ -358,7 +358,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" id="540" title="Map"/>
+                    <tabBarItem key="tabBarItem" id="540" title="Map" image="MapMarker-50.png"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="449" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -366,4 +366,10 @@
             <point key="canvasLocation" x="369" y="1085"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Settings-50.png" width="50" height="50"/>
+        <image name="HeartWithPulse-50.png" width="25" height="25"/>
+        <image name="MapMarker-50.png" width="25" height="25"/>
+        <image name="gear-50.png" width="25" height="25"/>
+    </resources>
 </document>
