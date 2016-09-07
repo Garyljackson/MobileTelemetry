@@ -12,13 +12,22 @@ namespace MobileTelemetry.iOS.Views.Maps
 
         public override MKOverlayRenderer OverlayRenderer(MKMapView mapView, IMKOverlay overlay)
         {
-            return new MKPolylineRenderer(overlay as MKPolyline)
+            var polyLine = overlay as MKPolyline;
+
+            if (polyLine == null)
+            {
+                return null;
+            }
+
+            return new MKPolylineRenderer
             {
                 Alpha = (nfloat)Alpha,
                 LineWidth = (nfloat)4.0,
                 FillColor = _color,
                 StrokeColor = _color
             };
+
+
         }
 
         public override void DidUpdateUserLocation(MKMapView mapView, MKUserLocation userLocation)

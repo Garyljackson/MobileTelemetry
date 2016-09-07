@@ -80,7 +80,7 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="195" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES" text="AXMiuQQRS+yW3wQDNDHdcH/dFwM1Iuk1O1IVZkhjMBg=">
                                 <rect key="frame" x="117" y="182" width="463" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="196" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES" text="TestDevice1">
                                 <rect key="frame" x="117" y="144" width="463" height="30"/>
