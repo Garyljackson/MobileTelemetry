@@ -206,9 +206,6 @@
     <Compile Include="Views\Maps\TripMapViewDelegate.cs" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Settings-50.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\HeartWithPulse-50%402x.png" />
   </ItemGroup>
   <ItemGroup>
