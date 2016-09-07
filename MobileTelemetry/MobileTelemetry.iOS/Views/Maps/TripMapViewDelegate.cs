@@ -19,7 +19,7 @@ namespace MobileTelemetry.iOS.Views.Maps
                 return null;
             }
 
-            return new MKPolylineRenderer
+            return new MKPolylineRenderer(polyLine)
             {
                 Alpha = (nfloat)Alpha,
                 LineWidth = (nfloat)4.0,
