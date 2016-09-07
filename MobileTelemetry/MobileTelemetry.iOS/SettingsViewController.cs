@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using CoreGraphics;
 using MobileTelemetry.EventRouter;
 using MobileTelemetry.EventSenders;
 using MobileTelemetry.Location;
@@ -56,10 +59,31 @@ namespace MobileTelemetry.iOS
             }
             else if (segOnOff.SelectedSegment == 1)
             {
-                SaveSettings();
-                SetHubConfiguration();
-                await _locationManager.StartLocationUpdatesAsync(TimeSpan.FromSeconds(5), 10, false);
+                if (!AreAllFieldsValid())
+                {
+                    segOnOff.SelectedSegment = 0;
+                }
+                else
+                {
+                    SaveSettings();
+                    SetHubConfiguration();
+                    await _locationManager.StartLocationUpdatesAsync(TimeSpan.FromSeconds(5), 10, false);
+                }
             }
+        }
+
+        private bool AreAllFieldsValid()
+        {
+            var fieldsToValidate = new List<UITextField>()
+            {
+                txtHubName,
+                txtDeviceId,
+                txtAccessKey
+            };
+
+            var validationResults = fieldsToValidate.Select(ValidateField).ToList();
+
+            return validationResults.All(b => b);
         }
 
         private void SetHubConfiguration()
@@ -73,5 +97,41 @@ namespace MobileTelemetry.iOS
             LocationEventRouter.Instance.SetEventSender(eventSender);
         }
 
+        private bool ValidateField(UITextField textField)
+        {
+            if (textField.Text.Length > 0)
+            {
+                ResetField(textField);
+                return true;
+            }
+
+            HiglightField(textField);
+            return false;
+        }
+
+        private void HiglightField(UIView textField)
+        {
+            SetField(textField, UIColor.White, UIColor.Red, 2, 5);
+        }
+
+        private void ResetField(UIView textField)
+        {
+            SetField(textField, UIColor.White, UIColor.Black, 0, 0);
+        }
+        
+        private void SetField(UIView field, UIColor backgroundColour, UIColor borderColour,nfloat borderWidth, nfloat cornerRadius)
+        {
+            if (field == null)
+                return;
+
+            // need to update on the main thread to change the border color
+            InvokeOnMainThread(() => {
+                field.BackgroundColor = backgroundColour;
+                field.Layer.BorderColor = borderColour.CGColor;
+                field.Layer.BorderWidth = borderWidth;
+                field.Layer.CornerRadius = cornerRadius;
+            });
+
+        }
     }
 }
